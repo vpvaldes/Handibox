@@ -10,12 +10,13 @@ from FaceTracking import FaceTracking
 
 class Camera:
 	def __init__(self):
+		#Get camera id
 		camerasettings = CameraSettings()
-		id_camera = int(camerasettings.read_id())
-		print id_camera
-		self.id_device = id_camera
+		self.id_device = int(camerasettings.read_id())
+		#Width and heigth of Handibox capture window
 		self.width = 320
 		self.height = 240
+		#Capture from selected camera
 		self.capture = cv.CreateCameraCapture(self.id_device)
 
 		#Set width and height of current capture 
@@ -34,7 +35,7 @@ class Camera:
 		#Instantiate FaceTraking Class, return framed face and move mouse pointer 
 		faceTraking = FaceTracking()
 
-		#Capture loop, show image with framed face
+		#show capture loop, show image with framed face
 		while True:
 			image = cv.QueryFrame(self.capture)
 			show = faceTraking.detectFace(image)

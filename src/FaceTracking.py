@@ -10,18 +10,18 @@ from Process_manager import Process_manager
 class FaceTracking:	
 	def __init__(self):
 		self.faceCascade = cv.Load("/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml")
-		self.xx = 0
-		self.yy = 0
-		self.pt1 = 0
-		self.pt2 = 0
-		self.posPre = 0  #Para obtener la posision relativa del mouse
-		self.Data = {"cursor" : (640, 400),} #Estructura de datos con la posicion actual del mouse
-		self.lastData = self.Data #ultima actualizacion
-		self.olddata = {"pointer" : (640, 400),} # posicion antigua
-		self.lastold = self.olddata
+		self.xx = 0 #Cursor coordinate
+		self.yy = 0 #Cursor coordinate
+		self.pt1 = 0 #Coordinates for draw face frame
+		self.pt2 = 0 #Coordinates for draw face frame
+		self.posPre = 0  #Relative position of cursor on screen
+		self.Data = {"cursor" : (640, 400),} #Current coordinares of cursor on screen
+		self.lastData = self.Data #Update cursor coordinates
+		self.olddata = {"pointer" : (640, 400),} # Old coordinates
+		self.lastold = self.olddata #Update cursor coordinates
 		
 	def detectFace(self, image):
-		
+		#Haarcascade param
 		min_size = (20,20)
 		image_scale = 2
 		haar_scale = 1.2
@@ -57,7 +57,7 @@ class FaceTracking:
 			self.xx = (self.pt1[0] + self.pt2[0])/2
 			self.yy = (self.pt1[1] + self.pt2[1])/2
 			cv.Circle(image, (self.xx, self.yy), 3, (0, 255, 0, 0), -1, 15, 0)
-			self.Data["cursor"] = (self.xx, self.yy)			
+			self.Data["cursor"] = (self.xx, self.yy)
 		return (image)
 					
 	def updateMousePos(self):
@@ -75,11 +75,11 @@ class FaceTracking:
 		oldx, oldy = self.olddata["pointer"]
 		
 		
-		mul = 9
+		mul = 10
 		x *= mul
 		y *= mul
 		posy = lambda n:(y/x) * n  
-		stepp = 40 
+		stepp = 40
 		if (abs(oldx - newx) > 1.5):
 		
 			if x > 0:

@@ -7,6 +7,8 @@ class CameraSettings:
 		#Init structure for list cameras on combobox
 		self.camera_list = [["Webcam Predeterminada", None]]
 		self.camera_id = [["Webcam Predeterminada", -1]]
+
+	def initcamera(self):
 		# Set camera id
 		camera = open("camera", "w")
 		camera.write("%s" % (-1))
@@ -14,6 +16,10 @@ class CameraSettings:
 		
 	def get_camera_data(self):
 		#Read camera names
+		self.camera_list[:] = []
+		self.camera_id[:] = []
+		self.camera_list = [["Webcam Predeterminada", None]]
+		self.camera_id = [["Webcam Predeterminada", -1]]
 		cameras = subprocess.Popen([" ls /dev/video* | grep video -c"], stdout=subprocess.PIPE, shell=True)
 		(num, err) = cameras.communicate()
 		self.count_cameras  = int(num)
