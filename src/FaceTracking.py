@@ -4,6 +4,7 @@ import cv2.cv as cv
 import numpy
 import os
 import time
+import pyatspi
 import pickle, threading
 from Process_manager import Process_manager
 
@@ -15,10 +16,11 @@ class FaceTracking:
 		self.pt1 = 0 #Coordinates for draw face frame
 		self.pt2 = 0 #Coordinates for draw face frame
 		self.posPre = 0  #Relative position of cursor on screen
-		self.Data = {"cursor" : (640, 400),} #Current coordinares of cursor on screen
+		self.Data = {"current" : (0,0),} #Current coordinares of cursor on screen
 		self.lastData = self.Data #Update cursor coordinates
-		self.olddata = {"pointer" : (640, 400),} # Old coordinates
+		self.olddata = {"old" : (0,0),} # Old coordinates
 		self.lastold = self.olddata #Update cursor coordinates
+
 		
 	def detectFace(self, image):
 		#Haarcascade param
@@ -57,34 +59,39 @@ class FaceTracking:
 			self.xx = (self.pt1[0] + self.pt2[0])/2
 			self.yy = (self.pt1[1] + self.pt2[1])/2
 			cv.Circle(image, (self.xx, self.yy), 3, (0, 255, 0, 0), -1, 15, 0)
-			self.Data["cursor"] = (self.xx, self.yy)
+			self.Data["current"] = (self.xx, self.yy)
 		return (image)
 					
 	def updateMousePos(self):
 		
-		pos = self.Data["cursor"]
+		pos = self.Data["current"]
 		posPre = self.posPre
 		npos = numpy.subtract(pos, posPre)
 		self.posPre = pos
 		self.t = threading.Thread(target=self.moveMouse, args=(npos))
 		self.t.start()
-        
-	def moveMouse(self, x, y):
+
+
+	def moveMouse(self, x, y): 
+		newx, newy = self.Data["current"]
+		oldx, oldy = self.olddata["old"]
+		muliply = 2
+		steppixels = 50
+		x *= multiply
+		y *= multiply
+		diff = abs(oldx - x)
 		
-		newx, newy = self.Data["cursor"]
-		oldx, oldy = self.olddata["pointer"]
-		
-		
-		mul = 10
-		x *= mul
-		y *= mul
-		posy = lambda n:(y/x) * n  
-		stepp = 40
-		if (abs(oldx - newx) > 1.5):
-		
+		if diff > 2: 
 			if x > 0:
-				for i in range(0, x, stepp): os.system("xdotool mousemove_relative -- %d %d" %(i, posy(i)))    
+				posy = lambda n:(y/x) * n
+				x = x * multiply
+				for i in range(0, x, steppixels): os.system("xdotool mousemove_relative -- %d %d" %(i, posy(i))) 
+
 			if x < 0:
-				for i in range(x, 0, stepp): os.system("xdotool mousemove_relative -- %d %d" %(i, posy(i)))
-			time.sleep(0.15)  	
-		self.olddata["pointer"] = (newx, newy)
+				posy = lambda n:(y/x) * n
+				x = x * multiply
+				for i in range(x, 0, steppixels): os.system("xdotool mousemove_relative -- %d %d" %(i, posy(i)))
+
+			time.sleep(0.2) 
+
+		self.olddata["old"] = (x, y)
