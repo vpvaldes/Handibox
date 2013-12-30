@@ -30,7 +30,9 @@ class FaceTracking:
 		min_neighbors = 2
 		haar_flags = 0
 		cv.Flip (image, image, 1)
-	
+		
+		print self.Data["current"]
+		
 		# Allocate the temporary images
 		gray = cv.CreateImage((image.width, image.height), 8, 1)
 		smallImage = cv.CreateImage((cv.Round(image.width / image_scale),cv.Round (image.height / image_scale)), 8 ,1)
@@ -76,21 +78,23 @@ class FaceTracking:
 		newx, newy = self.Data["current"]
 		oldx, oldy = self.olddata["old"]
 		multiply = 2
-		steppixels = 50
+		steppixels = 5
 		x *= multiply
 		y *= multiply
 		diff = abs(oldx - x)
-		posy = lambda n:(y/x) * n
-		
-		if diff > 2: 
+
+		if diff > 5: 
 			if x > 0:
+				posy = lambda n:(y/x) * n
 				x = x * multiply
 				for i in range(0, x, steppixels): os.system("xdotool mousemove_relative -- %d %d" %(i, posy(i))) 
 
 			if x < 0:
+				posy = lambda n:(y/x) * n
 				x = x * multiply
 				for i in range(x, 0, steppixels): os.system("xdotool mousemove_relative -- %d %d" %(i, posy(i)))
 
 			time.sleep(0.2) 
 
 		self.olddata["old"] = (x, y)
+
