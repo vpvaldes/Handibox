@@ -4,7 +4,6 @@ import cv2.cv as cv
 import numpy
 import os
 import time
-import pyatspi
 import pickle, threading
 from Process_manager import Process_manager
 
