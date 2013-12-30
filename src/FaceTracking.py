@@ -75,7 +75,7 @@ class FaceTracking:
 	def moveMouse(self, x, y): 
 		newx, newy = self.Data["current"]
 		oldx, oldy = self.olddata["old"]
-		muliply = 2
+		multiply = 2
 		steppixels = 50
 		x *= multiply
 		y *= multiply
