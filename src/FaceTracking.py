@@ -80,15 +80,14 @@ class FaceTracking:
 		x *= multiply
 		y *= multiply
 		diff = abs(oldx - x)
+		posy = lambda n:(y/x) * n
 		
 		if diff > 2: 
 			if x > 0:
-				posy = lambda n:(y/x) * n
 				x = x * multiply
 				for i in range(0, x, steppixels): os.system("xdotool mousemove_relative -- %d %d" %(i, posy(i))) 
 
 			if x < 0:
-				posy = lambda n:(y/x) * n
 				x = x * multiply
 				for i in range(x, 0, steppixels): os.system("xdotool mousemove_relative -- %d %d" %(i, posy(i)))
 
