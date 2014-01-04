@@ -3,6 +3,7 @@ from gi.repository import Gio
 
 class ScreenKeyboard():
 	CONFIGURATION_KEY = "org.gnome.desktop.a11y.applications"
+	#Enable or disable Screen Keyboard
 	def __init__(self):
 		self.configuration_key = Gio.Settings.new(self.CONFIGURATION_KEY)
 	

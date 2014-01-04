@@ -4,6 +4,7 @@ import os
 
 class MouseTweak():
 	CONFIGURATION_KEY = "org.gnome.desktop.a11y.mouse"
+	#Enable or disable MouseTweak
 	def __init__(self):
 		self.configuration_key = Gio.Settings.new(self.CONFIGURATION_KEY)
 	def enable_MouseTweak(self):

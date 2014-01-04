@@ -4,7 +4,7 @@
 @summary: Module HandiboxMain: shows main window
 @author: Victoria Valdes 
 @contact: vvaldes@alumnos.utalca.cl
-@version: 4.0
+@version: 6.0
 @license: GNU GENERAL PUBLIC LICENSE
 @date: December 2013
 """
