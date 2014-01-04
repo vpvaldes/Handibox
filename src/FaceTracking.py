@@ -12,7 +12,7 @@ class FaceTracking:
 	def __init__(self):
 		######Set FaceTraking constructor initial values################
 		################################################################
-		self.faceCascade = cv.Load("/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml") #Haar classifier cascade
+		self.faceCascade = cv.Load("../haarcascade/haarcascade_frontalface_default.xml") #Haar classifier cascade
 		self.xx = 0 #Pointer coordinate
 		self.yy = 0 #Pointer coordinate
 		self.pt1 = 0 #Coordinates for draw face frame
