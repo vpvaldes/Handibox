@@ -4,7 +4,6 @@ import cv2.cv as cv
 import numpy
 import os
 import time
-import pyatspi
 import pickle, threading
 from Process_manager import Process_manager
 
@@ -26,6 +25,7 @@ class FaceTracking:
 		
 	def detectFace(self, image):
 		#Haarcascade param
+<<<<<<< HEAD
 		min_size = (20,20) #Minimum possible object size. Objects smaller than that are ignored.
 		image_scale = 2 #Parameter specifying how much the image size is reduced at each image scale.
 		haar_scale = 1.2 # The factor by which the search window is scaled between the subsequent scans, 1.2 means increasing window by 12 %
@@ -33,6 +33,17 @@ class FaceTracking:
 		haar_flags = 0 #If it is set, the function uses Canny edge detector to reject some image regions that contain too few or too much edges and thus can not contain the searched object.
 		cv.Flip (image, image, 1) #Flip image
 	
+=======
+		min_size = (20,20)
+		image_scale = 2
+		haar_scale = 1.2
+		min_neighbors = 2
+		haar_flags = 0
+		cv.Flip (image, image, 1)
+		
+		print self.Data["current"]
+		
+>>>>>>> 566b6dadebcc5a4daa0e5fec38f6b26698061850
 		# Allocate the temporary images
 		gray = cv.CreateImage((image.width, image.height), 8, 1)
 		smallImage = cv.CreateImage((cv.Round(image.width / image_scale),cv.Round (image.height / image_scale)), 8 ,1)
@@ -80,6 +91,7 @@ class FaceTracking:
 
 
 	def moveMouse(self, x, y): 
+<<<<<<< HEAD
 		#update and move pointer
 		#Get coordinates x & y of virtual screen from thread on UpdateMousePos method 
 		virtual_screen_x = 320/2 # Size of virtualscreen X axis
@@ -90,6 +102,21 @@ class FaceTracking:
 			x = virtual_screen_x
 		if (y ==0):
 			y = virtual_screen_y
+=======
+		newx, newy = self.Data["current"]
+		oldx, oldy = self.olddata["old"]
+		multiply = 2
+		steppixels = 5
+		x *= multiply
+		y *= multiply
+		diff = abs(oldx - x)
+
+		if diff > 5: 
+			if x > 0:
+				posy = lambda n:(y/x) * n
+				x = x * multiply
+				for i in range(0, x, steppixels): os.system("xdotool mousemove_relative -- %d %d" %(i, posy(i))) 
+>>>>>>> 566b6dadebcc5a4daa0e5fec38f6b26698061850
 
 		#Get current pointer coordinates 
 		px,py = pman.get_pointer()
@@ -120,4 +147,9 @@ class FaceTracking:
 			self.olddata["old"] = (x, y)
 
 
+<<<<<<< HEAD
 pman = Process_manager()
+=======
+		self.olddata["old"] = (x, y)
+
+>>>>>>> 566b6dadebcc5a4daa0e5fec38f6b26698061850
