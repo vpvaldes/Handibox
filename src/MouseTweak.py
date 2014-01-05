@@ -10,7 +10,9 @@ class MouseTweak():
 	def enable_MouseTweak(self):
 		os.system("python Camera.py &")
 		self.configuration_key.set_boolean("dwell-click-enabled", True)
+		self.configuration_key.set_boolean("click-type-window-visible", True)
 		
 	def disable_MouseTweak(self):
 		self.configuration_key.reset("dwell-click-enabled")
+		self.configuration_key.reset("click-type-window-visible")
 		

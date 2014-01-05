@@ -9,7 +9,7 @@ import pickle, threading
 from Process_manager import Process_manager
 from Calibrations import Calibrations
 
-class FaceTracking:	
+class FaceTracking:
 	def __init__(self):
 		######Set FaceTraking constructor initial values################
 		################################################################
@@ -122,6 +122,6 @@ class FaceTracking:
 			#Save coordinates
 			self.olddata["old"] = (x, y)
 
-
 pman = Process_manager()
 calibrations = Calibrations()
+
