@@ -15,4 +15,6 @@ The function of the software Handibox was validated directly with the students, 
 View full documentation at: http://eibi.utalca.cl/~vvaldes/Handibox/
 
 Need to see it work?
+
+
 [![ScreenShot](https://dl.dropboxusercontent.com/u/33569693/screenshot.png)](http://www.youtube.com/watch?v=QZdgpVH6Pzs)
