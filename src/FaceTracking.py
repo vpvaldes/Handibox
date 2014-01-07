@@ -87,40 +87,33 @@ class FaceTracking:
 		virtual_screen_x = 320/2 # Size of virtualscreen X axis
 		virtual_screen_y = 240/2 # Size of virtualscreen y axis
 		calibration = int(self.calibration)
-		
+		oldx,oldy = self.olddata["old"] 
 		# 0,0 neutral zone... no movement
-		if (x ==0):
-			x = virtual_screen_x
-		if (y ==0):
-			y = virtual_screen_y
-
+		print x,y
+		if (x==oldx and y==oldy):
+			return
+		if (x <=0 and y<=0):
+			return 
 		#Get current pointer coordinates 
 		px,py = pman.get_pointer()
-		
 		px = int(px)
 		py = int(py)
-		
 		diff_x = abs((virtual_screen_x) - x)
 		diff_y = abs((virtual_screen_y) - y)
-		
-		#Movement loop
-		while (True):
-			if (diff_x <=10  and diff_y<=10 ):
-				break
-			diff_x= -1
-			diff_y= -1
-			if (virtual_screen_x > x):
-				px = (px)- calibration
-			else:
-				px = (px)+ calibration
-			if (virtual_screen_y > y):
-				py = (py)- calibration
-			else:
-				py = (py)+ calibration
-			#Trigger movement
-			os.system("xdotool mousemove %d %d" %( (px) , (py) ))
-			#Save coordinates
-			self.olddata["old"] = (x, y)
+		if (diff_x <=10  and diff_y<=10 ):
+			return
+		if (virtual_screen_x > x):
+			px = (px)- calibration
+		else: 
+			px = (px)+ calibration
+		if (virtual_screen_y > y):
+			py = (py)- calibration
+		else:
+			py = (py)+ calibration
+		#Trigger movement
+		os.system("xdotool mousemove %d %d" %( (px) , (py) ))
+		#Save coordinates
+		self.olddata["old"] = (x, y)
 
 pman = Process_manager()
 calibrations = Calibrations()
