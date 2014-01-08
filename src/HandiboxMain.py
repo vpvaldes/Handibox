@@ -122,6 +122,7 @@ class HandiboxMain(Gtk.Window):
 		handiboxsettings = HandiboxSettings()
 		handiboxsettings.show_all()
 		
+		
 camerasettings = CameraSettings()
 camerasettings.initcamera()
 handiboxmain = HandiboxMain()

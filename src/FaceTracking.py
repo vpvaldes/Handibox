@@ -4,7 +4,6 @@ import cv2.cv as cv
 import numpy
 import os
 import time
-import pyatspi
 import pickle, threading
 from Process_manager import Process_manager
 from Calibrations import Calibrations
@@ -89,7 +88,6 @@ class FaceTracking:
 		calibration = int(self.calibration)
 		oldx,oldy = self.olddata["old"] 
 		# 0,0 neutral zone... no movement
-		print x,y
 		if (x==oldx and y==oldy):
 			return
 		if (x <=0 and y<=0):
