@@ -16,7 +16,7 @@ class CameraSettings:
 		last_camera.close()
 
 		if (camera_id == -1):
-			break
+			return
 
 		elif (camera_id != -1):
 
