@@ -73,3 +73,16 @@ class CameraSettings:
 		id_camera = lines[0]
 		camera.close()
 		return id_camera
+
+	def checkconfig(self):
+		try:
+   			f = open('camera')
+			print "existe"
+       			return
+
+		except IOError:
+			print "no existe, creando"
+   			default_camera = open("camera", "w+")
+			default_camera.write("%s" % (-1))
+			default_camera.close()
+		
