@@ -9,8 +9,9 @@ GCONF_REQUIRED=1:2.20110530.1-3ubuntu1
 
 AC_CHECK_PROG(XDOTOOL_CHECK,xdotool,yes)
 if test x"$XDOTOOL_CHECK" != x"yes" ; then
-    AC_MSG_ERROR([Please install XDOTOOL before installing.])
+    AC_MSG_ERROR([Please install xdotool before installing.])
 fi
+
 
 dnl check modules for python
 PYTHONC="python"
@@ -21,7 +22,7 @@ if test $? -eq 0
 then
 	AC_MSG_RESULT(checking for python module: $MODULE_NAME: found)
 else
-	AC_MSG_RESULT(checking for python module: $MODULE_NAME: not found)
+	AC_MSG_RESULT(checking for python module: $MODULE_NAME: not found install libopencv-* and python-opencv)
 	exit 1 
 fi
 
@@ -31,7 +32,7 @@ if test $? -eq 0
 then
         AC_MSG_RESULT(checking for python module: $MODULE_NAME: found)
 else
-        AC_MSG_RESULT(checking for python module: $MODULE_NAME: not found)
+        AC_MSG_RESULT(checking for python module: $MODULE_NAME: not found  install libopencv-* and python-opencv)
         exit 1
 fi
 
@@ -71,7 +72,7 @@ if test $? -eq 0
 then
         AC_MSG_RESULT(checking for python module: $MODULE_NAME: found)
 else
-        AC_MSG_RESULT(checking for python module: $MODULE_NAME: not found)
+        AC_MSG_RESULT(checking for python module: $MODULE_NAME: not found  install gnome-shell)
         exit 1
 fi
 
@@ -119,6 +120,7 @@ fi
 AC_CONFIG_FILES([Makefile
 		 src/Makefile
 		haarcascade/Makefile
+		res/Makefile
 ])
 
 

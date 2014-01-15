@@ -159,7 +159,7 @@ top_srcdir = ..
 haarcascade_PYTHON = \
 	haarcascade_frontalface_default.xml
 
-haarcascadedir = $(pythondir)/haarcascade
+haarcascadedir = $(pythondir)/handibox/haarcascade
 all: all-am
 
 .SUFFIXES:

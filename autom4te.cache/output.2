@@ -563,11 +563,12 @@ PACKAGE_URL=''
 
 ac_subst_vars='LTLIBOBJS
 LIB@&t@OBJS
-Handibox_LIBS
-Handibox_CFLAGS
+OPENCV_LIBS
+OPENCV_CFLAGS
 PKG_CONFIG_LIBDIR
 PKG_CONFIG_PATH
 PKG_CONFIG
+XDOTOOL_CHECK
 pkgpyexecdir
 pyexecdir
 pkgpythondir
@@ -649,8 +650,8 @@ PYTHON
 PKG_CONFIG
 PKG_CONFIG_PATH
 PKG_CONFIG_LIBDIR
-Handibox_CFLAGS
-Handibox_LIBS'
+OPENCV_CFLAGS
+OPENCV_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1270,10 +1271,9 @@ Some influential environment variables:
               directories to add to pkg-config's search path
   PKG_CONFIG_LIBDIR 
               path overriding pkg-config's built-in search path
-  Handibox_CFLAGS 
-              C compiler flags for Handibox, overriding pkg-config
-  Handibox_LIBS 
-              linker flags for Handibox, overriding pkg-config
+  OPENCV_CFLAGS 
+              C compiler flags for OPENCV, overriding pkg-config
+  OPENCV_LIBS linker flags for OPENCV, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -2443,6 +2443,50 @@ $as_echo "$am_cv_python_pyexecdir" >&6; }
 
 
 GCONF_REQUIRED=1:2.20110530.1-3ubuntu1
+#PKG_CHECK_MODULES(Handibox,	xdotool >= $GCONF_REQUIRED)
+
+# Extract the first word of "xdotool", so it can be a program name with args.
+set dummy xdotool; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_prog_XDOTOOL_CHECK+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$XDOTOOL_CHECK"; then
+  ac_cv_prog_XDOTOOL_CHECK="$XDOTOOL_CHECK" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_XDOTOOL_CHECK="yes"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+XDOTOOL_CHECK=$ac_cv_prog_XDOTOOL_CHECK
+if test -n "$XDOTOOL_CHECK"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $XDOTOOL_CHECK" >&5
+$as_echo "$XDOTOOL_CHECK" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+if test x"$XDOTOOL_CHECK" != x"yes" ; then
+    as_fn_error $? "Please install XDOTOOL before installing." "$LINENO" 5
+fi
+
+OPENCV=2
 
 
 
@@ -2565,19 +2609,19 @@ $as_echo "no" >&6; }
 fi
 
 pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Handibox" >&5
-$as_echo_n "checking for Handibox... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for OPENCV" >&5
+$as_echo_n "checking for OPENCV... " >&6; }
 
-if test -n "$Handibox_CFLAGS"; then
-    pkg_cv_Handibox_CFLAGS="$Handibox_CFLAGS"
+if test -n "$OPENCV_CFLAGS"; then
+    pkg_cv_OPENCV_CFLAGS="$OPENCV_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"xdotool >= \$GCONF_REQUIRED\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "xdotool >= $GCONF_REQUIRED") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"python-opencv >= \$OPENCV\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "python-opencv >= $OPENCV") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_Handibox_CFLAGS=`$PKG_CONFIG --cflags "xdotool >= $GCONF_REQUIRED" 2>/dev/null`
+  pkg_cv_OPENCV_CFLAGS=`$PKG_CONFIG --cflags "python-opencv >= $OPENCV" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes 
 else
   pkg_failed=yes
@@ -2585,16 +2629,16 @@ fi
  else
     pkg_failed=untried
 fi
-if test -n "$Handibox_LIBS"; then
-    pkg_cv_Handibox_LIBS="$Handibox_LIBS"
+if test -n "$OPENCV_LIBS"; then
+    pkg_cv_OPENCV_LIBS="$OPENCV_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"xdotool >= \$GCONF_REQUIRED\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "xdotool >= $GCONF_REQUIRED") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"python-opencv >= \$OPENCV\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "python-opencv >= $OPENCV") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_Handibox_LIBS=`$PKG_CONFIG --libs "xdotool >= $GCONF_REQUIRED" 2>/dev/null`
+  pkg_cv_OPENCV_LIBS=`$PKG_CONFIG --libs "python-opencv >= $OPENCV" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes 
 else
   pkg_failed=yes
@@ -2615,22 +2659,22 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        Handibox_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "xdotool >= $GCONF_REQUIRED" 2>&1`
+	        OPENCV_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "python-opencv >= $OPENCV" 2>&1`
         else 
-	        Handibox_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "xdotool >= $GCONF_REQUIRED" 2>&1`
+	        OPENCV_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "python-opencv >= $OPENCV" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$Handibox_PKG_ERRORS" >&5
+	echo "$OPENCV_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (xdotool >= $GCONF_REQUIRED) were not met:
+	as_fn_error $? "Package requirements (python-opencv >= $OPENCV) were not met:
 
-$Handibox_PKG_ERRORS
+$OPENCV_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables Handibox_CFLAGS
-and Handibox_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables OPENCV_CFLAGS
+and OPENCV_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details." "$LINENO" 5        
 elif test $pkg_failed = untried; then
      	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -2641,19 +2685,20 @@ as_fn_error $? "The pkg-config script could not be found or is too old.  Make su
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables Handibox_CFLAGS
-and Handibox_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables OPENCV_CFLAGS
+and OPENCV_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }        
 else
-	Handibox_CFLAGS=$pkg_cv_Handibox_CFLAGS
-	Handibox_LIBS=$pkg_cv_Handibox_LIBS
+	OPENCV_CFLAGS=$pkg_cv_OPENCV_CFLAGS
+	OPENCV_LIBS=$pkg_cv_OPENCV_LIBS
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 	
 fi
+
 
 PYTHONC="python"
 
@@ -2778,7 +2823,7 @@ $as_echo "checking for python module: $MODULE_NAME: not found" >&6; }
 fi
 
 
-ac_config_files="$ac_config_files Makefile src/Makefile"
+ac_config_files="$ac_config_files Makefile src/Makefile haarcascade/Makefile"
 
 
 
@@ -3505,6 +3550,7 @@ do
   case $ac_config_target in
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
+    "haarcascade/Makefile") CONFIG_FILES="$CONFIG_FILES haarcascade/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

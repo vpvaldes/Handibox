@@ -1,4 +1,4 @@
-SUBDIRS = src haarcascade
+SUBDIRS = src haarcascade res
 
 bin_SCRIPTS = handibox
 CLEANFILES = $(bin_SCRIPTS)

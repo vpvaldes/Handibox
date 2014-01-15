@@ -29,14 +29,14 @@ class HandiboxMain(Gtk.Window):
 	CONFIGURATION_KEY = "org.gnome.desktop.a11y.applications"
 	def __init__(self):
 		Gtk.Window.__init__(self, title="Handibox")
-		self.set_default_icon_from_file ("handibox.png")
+		self.set_default_icon_from_file ("res/handibox.png")
 		self.set_default_size(200, 100)
 		self.set_border_width(10)
 		self.configuration_key = Gio.Settings.new(self.CONFIGURATION_KEY)
 
 		# create an image (Handibox logo)
 		handiboxlogo = Gtk.Image()
-		handiboxlogo.set_from_file("handibox.png")
+		handiboxlogo.set_from_file("res/handibox.png")
 
 		#First switch: Mouseteak
 		self.mousetweakswitch = Gtk.Switch()

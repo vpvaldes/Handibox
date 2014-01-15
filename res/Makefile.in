@@ -31,8 +31,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-subdir = haarcascade
-DIST_COMMON = $(haarcascade_PYTHON) $(srcdir)/Makefile.am \
+subdir = res
+DIST_COMMON = $(res_PYTHON) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -71,7 +71,7 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__py_compile = PYTHON=$(PYTHON) $(SHELL) $(py_compile)
-am__installdirs = "$(DESTDIR)$(haarcascadedir)"
+am__installdirs = "$(DESTDIR)$(resdir)"
 py_compile = $(top_srcdir)/py-compile
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -156,10 +156,10 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-haarcascade_PYTHON = \
-	haarcascade_frontalface_default.xml
+res_PYTHON = \
+	handibox.png
 
-haarcascadedir = $(pythondir)/handibox/haarcascade
+resdir = $(pythondir)/handibox/res
 all: all-am
 
 .SUFFIXES:
@@ -172,9 +172,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu haarcascade/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu res/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu haarcascade/Makefile
+	  $(AUTOMAKE) --gnu res/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -193,10 +193,10 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-install-haarcascadePYTHON: $(haarcascade_PYTHON)
+install-resPYTHON: $(res_PYTHON)
 	@$(NORMAL_INSTALL)
-	test -z "$(haarcascadedir)" || $(MKDIR_P) "$(DESTDIR)$(haarcascadedir)"
-	@list='$(haarcascade_PYTHON)'; dlist=; list2=; test -n "$(haarcascadedir)" || list=; \
+	test -z "$(resdir)" || $(MKDIR_P) "$(DESTDIR)$(resdir)"
+	@list='$(res_PYTHON)'; dlist=; list2=; test -n "$(resdir)" || list=; \
 	for p in $$list; do \
 	  if test -f "$$p"; then b=; else b="$(srcdir)/"; fi; \
 	  if test -f $$b$$p; then \
@@ -207,20 +207,20 @@ install-haarcascadePYTHON: $(haarcascade_PYTHON)
 	done; \
 	for file in $$list2; do echo $$file; done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(haarcascadedir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(haarcascadedir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(resdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(resdir)" || exit $$?; \
 	done || exit $$?; \
 	if test -n "$$dlist"; then \
 	  $(am__py_compile) --destdir "$(DESTDIR)" \
-	                    --basedir "$(haarcascadedir)" $$dlist; \
+	                    --basedir "$(resdir)" $$dlist; \
 	else :; fi
 
-uninstall-haarcascadePYTHON:
+uninstall-resPYTHON:
 	@$(NORMAL_UNINSTALL)
-	@list='$(haarcascade_PYTHON)'; test -n "$(haarcascadedir)" || list=; \
+	@list='$(res_PYTHON)'; test -n "$(resdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	test -n "$$files" || exit 0; \
-	dir='$(DESTDIR)$(haarcascadedir)'; \
+	dir='$(DESTDIR)$(resdir)'; \
 	filesc=`echo "$$files" | sed 's|$$|c|'`; \
 	fileso=`echo "$$files" | sed 's|$$|o|'`; \
 	st=0; \
@@ -269,7 +269,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile
 installdirs:
-	for dir in "$(DESTDIR)$(haarcascadedir)"; do \
+	for dir in "$(DESTDIR)$(resdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -322,7 +322,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-haarcascadePYTHON
+install-data-am: install-resPYTHON
 
 install-dvi: install-dvi-am
 
@@ -366,21 +366,20 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-haarcascadePYTHON
+uninstall-am: uninstall-resPYTHON
 
 .MAKE: install-am install-strip
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am \
-	install-haarcascadePYTHON install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-haarcascadePYTHON
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-resPYTHON install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am uninstall \
+	uninstall-am uninstall-resPYTHON
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

@@ -8,7 +8,7 @@ class MouseTweak():
 	def __init__(self):
 		self.configuration_key = Gio.Settings.new(self.CONFIGURATION_KEY)
 	def enable_MouseTweak(self):
-		os.system("python src/Camera.py &")
+		os.system("python Camera.py &")
 		self.configuration_key.set_boolean("dwell-click-enabled", True)
 		self.configuration_key.set_boolean("click-type-window-visible", True)
 		

@@ -124,7 +124,7 @@ class HandiboxMain(Gtk.Window):
 		
 		
 camerasettings = CameraSettings()
-camerasettings.create_config()
+camerasettings.checkconfig()
 camerasettings.initcamera()
 handiboxmain = HandiboxMain()
 handiboxmain.connect("delete-event", Gtk.main_quit)

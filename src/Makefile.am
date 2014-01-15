@@ -6,6 +6,7 @@ target:	echo $(VARIABLE)
 handibox_PYTHON = \
 	HandiboxMain.py\
 	Calibrations.py\
+	camera\
 	Camera.py\
 	CameraSettings.py\
 	FaceTracking.py\
@@ -14,6 +15,5 @@ handibox_PYTHON = \
 	Process_manager.py\
 	ScreenKeyboard.py\
 	ScreenMagnifier.py\
-	haarcascade_frontalface_default.xml\
 	__init__.py
 handiboxdir = $(pythondir)/handibox
